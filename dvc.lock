@@ -1,0 +1,98 @@
+schema: '2.0'
+stages:
+  download_data:
+    cmd: Rscript R/build.R
+    deps:
+    - path: R/build.R
+      md5: c2c46ae62013d61ee22129b4bc589bc9
+      size: 2301
+    outs:
+    - path: data/CTD_Phenotype-Disease_biological_process_associations.parquet
+      md5: 43f40d3d558840c2b028604a354ff556
+      size: 28395975
+    - path: data/CTD_Phenotype-Disease_cellular_component_associations.parquet
+      md5: 9dada41a7961eead06a5bc306291b9e6
+      size: 1836533
+    - path: data/CTD_Phenotype-Disease_molecular_function_associations.parquet
+      md5: bd62e5ff5629cc2528d37bec3300a765
+      size: 2905632
+    - path: data/CTD_anatomy.parquet
+      md5: 4c65461034adccec30e6e2b9aa4430d1
+      size: 519269
+    - path: data/CTD_chem_gene_ixn_types.obo
+      md5: f02d2f87080888b7c1553f45b5a9269a
+      size: 20981
+    - path: data/CTD_chem_gene_ixn_types.parquet
+      md5: 40ae7801c0ab9e455708b002394617f3
+      size: 6496
+    - path: data/CTD_chem_gene_ixns.parquet
+      md5: 9f7db1b0e2fa751396170ca1eb6f8cf5
+      size: 48040443
+    - path: data/CTD_chem_go_enriched.parquet
+      md5: fd245ad42f552e8cf5d72cb77013566c
+      size: 111556549
+    - path: data/CTD_chem_pathways_enriched.parquet
+      md5: 68421ac9456b94142fe8e927ca92ff17
+      size: 14723918
+    - path: data/CTD_chemicals.parquet
+      md5: 9be6605a0c726808b626d6ab6503722b
+      size: 16697640
+    - path: data/CTD_chemicals_diseases.parquet
+      md5: 82f87cb2d208a685f931545566694fcf
+      size: 82019389
+    - path: data/CTD_diseases.parquet
+      md5: e0106c4ba1fcfedd8487ca5b80a063e9
+      size: 2800776
+    - path: data/CTD_diseases_pathways.parquet
+      md5: 5a2ca43ddf5095f2cbc423b9433144f6
+      size: 2488678
+    - path: data/CTD_exposure_events.parquet
+      md5: 71f0c9060686016469582e72d0286da4
+      size: 3098266
+    - path: data/CTD_exposure_ontology.obo
+      md5: b065527806870131831ef83f8a5635ea
+      size: 61218
+    - path: data/CTD_exposure_studies.parquet
+      md5: b92846c488eb2157b273e75a43555d69
+      size: 716967
+    - path: data/CTD_genes.parquet
+      md5: 1026a21170c604c35ba9960b74b7d87f
+      size: 82136316
+    - path: data/CTD_genes_diseases.parquet
+      md5: e7dc25444abfde3339fde2d9f04b7b8b
+      size: 2601496047
+    - path: data/CTD_genes_pathways.parquet
+      md5: a7d301fb011a9a5c18d44dc826f80d52
+      size: 559158
+    - path: data/CTD_pathways.parquet
+      md5: d2b60cc8455c4c12ffa7c39d5453bd1f
+      size: 79622
+    - path: data/CTD_pheno_term_ixns.parquet
+      md5: b69ed355ddefd4dcc159d7f0aea693ee
+      size: 24998165
+  download:
+    cmd: Rscript R/download.R
+    deps:
+    - path: R/download.R
+      md5: 0391ade7a20caf6f768a8d778db9a3b6
+      size: 576
+    outs:
+    - path: download/
+      md5: 1d5dbb921334a36baf822f34af12c338.dir
+      size: 2849139055
+      nfiles: 21
+  build:
+    cmd: Rscript R/build.R
+    deps:
+    - path: R/build.R
+      md5: ca7d68424002c6e2288c92345cb76b5f
+      size: 958
+    - path: download/
+      md5: 1d5dbb921334a36baf822f34af12c338.dir
+      size: 2849139055
+      nfiles: 21
+    outs:
+    - path: data/
+      md5: 43f469cc1e70e7e8d9c76c8659e3fc7e.dir
+      size: 3025158038
+      nfiles: 21

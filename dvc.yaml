@@ -1,0 +1,14 @@
+stages:
+  download:
+    cmd: Rscript R/download.R
+    deps:
+    - R/download.R # TODO this needs a dependency on ctdbase
+    outs:
+    - download/
+  build:
+    cmd: Rscript R/build.R
+    deps:
+    - download/
+    - R/build.R
+    outs:
+    - data/
