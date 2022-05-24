@@ -1,14 +1,13 @@
 stages:
-  download:
+  download_data:
     cmd: Rscript R/download.R
     deps:
-    - R/download.R # TODO this needs a dependency on ctdbase
+    - R/download.R
     outs:
     - download/
-  build:
+  build_data:
     cmd: Rscript R/build.R
     deps:
-    - download/
     - R/build.R
     outs:
     - data/
