@@ -1,3 +1,4 @@
+<a href="https://github.com/biobricks-ai/ctdbase/actions"><img src="https://github.com/biobricks-ai/ctdbase/actions/workflows/bricktools-check.yaml/badge.svg?branch=main"/></a>
 ---
 title: ctdbase
 namespace: ctdbase
