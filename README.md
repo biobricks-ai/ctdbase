@@ -7,7 +7,7 @@ dependencies:
     url: http://ctdbase.org/downloads
 ---
 
-<a href="https://github.com/biobricks-ai/ctdbase/actions"><img src="https://github.com/biobricks-ai/ctdbase/actions/workflows/bricktools-check.yaml/badge.svg?branch=main"/></a>
+<a href="https://github.com/biobricks-ai/ctdbase/actions"><img src="https://github.com/biobricks-ai/ctdbase/actions/workflows/bricktools-check.yaml/badge.svg?branch=master"/></a>
 
 # Comparative Toxicogenomics Database [ctdbase.org](http://ctdbase.org/downloads)
 > CTD is a robust, publicly available database that aims to advance understanding about how environmental exposures affect human health - http://ctdbase.org/
