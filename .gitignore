@@ -1,2 +1,6 @@
 /download
 /data
+
+.*
+!.github
+!.gitignore
