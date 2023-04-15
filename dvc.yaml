@@ -1,13 +1,15 @@
 stages:
-  download_data:
-    cmd: Rscript R/download.R
+  download:
+    cmd: Rscript src/1_download.R
     deps:
-    - R/download.R
+    - src/1_download.R
+    - http://ctdbase.org/downloads/
     outs:
     - download/
-  build_data:
-    cmd: Rscript R/build.R
+  build:
+    cmd: Rscript src/2_build.R
     deps:
-    - R/build.R
+    - src/2_build.R
+    - download/
     outs:
-    - data/
+    - brick/
