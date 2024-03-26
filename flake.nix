@@ -12,7 +12,7 @@
   outputs = { self, nixpkgs, flake-utils, ... }@inputs:
     flake-utils.lib.eachDefaultSystem (system:
       with import nixpkgs { inherit system; };
-      let R-pkgs = with rPackages; [ arrow fs purrr rvest vroom ];
+      let R-pkgs = with rPackages; [ arrow fs pacman purrr readr rvest vroom ];
       in {
         devShells.default =
           mkShell { buildInputs = [ arrow-cpp R ] ++ R-pkgs; };
