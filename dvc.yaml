@@ -1,15 +1,21 @@
 stages:
-  download:
-    cmd: Rscript src/1_download.R
+  invalidate:
+    cmd: sh stages/00_invalidate.sh
     deps:
-    - src/1_download.R
+    - stages/00_invalidate.sh
+    outs:
+    - checksum/
+  download:
+    cmd: Rscript stages/01_download.R
+    deps:
+    - stages/01_download.R
     - http://ctdbase.org/downloads/
     outs:
-    - download/
+    - cache/download/
   build:
-    cmd: Rscript src/2_build.R
+    cmd: Rscript stages/02_build.R
     deps:
-    - src/2_build.R
-    - download/
+    - stages/02_build.R
+    - cache/download/
     outs:
     - brick/
