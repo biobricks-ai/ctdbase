@@ -1,6 +1,5 @@
-/download
-/data
-
+/cache
+/checksum
 .*
 !.envrc
 !.github
