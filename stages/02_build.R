@@ -21,5 +21,5 @@ save_parquet <- function(file) {
 
 # WRITE OUTS =================================================================
 fs::dir_ls(outdir) |> fs::file_delete()
-files <- fs::dir_ls("cache/download", regexp = "(*.tsv)(.gz)?$")
+files <- fs::dir_ls("download", regexp = "(*.tsv)(.gz)?$")
 files |> walk(save_parquet)

@@ -8,10 +8,10 @@ stages:
       checksum: '82628762405679720307201941663765326895'
     - path: stages/01_download.R
       hash: md5
-      md5: 4bc5dae04360e83699fc0851095639dc
-      size: 502
+      md5: e86e4eab106786eab280665950e75676
+      size: 496
     outs:
-    - path: cache/download/
+    - path: download/
       hash: md5
       md5: 2fb4d6581526afe1ec3d1050ff23535b.dir
       size: 3229796158
@@ -19,15 +19,15 @@ stages:
   build:
     cmd: Rscript stages/02_build.R
     deps:
-    - path: cache/download/
+    - path: download/
       hash: md5
       md5: 2fb4d6581526afe1ec3d1050ff23535b.dir
       size: 3229796158
       nfiles: 21
     - path: stages/02_build.R
       hash: md5
-      md5: 6b96eabefd1039d22629e4402facdd1e
-      size: 830
+      md5: 41faca63ff3913cf7ede8590a2556e4a
+      size: 824
     outs:
     - path: brick/
       hash: md5

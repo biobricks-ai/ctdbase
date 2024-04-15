@@ -11,11 +11,11 @@ stages:
     - stages/01_download.R
     - http://ctdbase.org/downloads/
     outs:
-    - cache/download/
+    - download/
   build:
     cmd: Rscript stages/02_build.R
     deps:
     - stages/02_build.R
-    - cache/download/
+    - download/
     outs:
     - brick/
