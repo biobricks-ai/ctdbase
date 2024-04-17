@@ -1,0 +1,323 @@
+id: "https://ctdbase.org/"
+title: CTDBase
+page: https://ctdbase.org/downloads/
+description: >-
+  CTD is a robust, publicly available database that aims to advance understanding about how environmental exposures affect human health. 
+  It provides manually curated information about chemical–gene/protein interactions, chemical–disease and gene–disease relationships.
+  These data are integrated with functional and pathway data to aid in development of hypotheses about the mechanisms underlying environmentally influenced diseases.
+resources:
+  brick/CTD_chem_gene_ixns.parquet:
+    title: "Chemical-gene interactions"
+    page: https://ctdbase.org/reports/CTD_chem_gene_ixns.tsv.gz
+    description: >-
+      Fields:
+        1. ChemicalName
+        2. ChemicalID (MeSH identifier)
+        3. CasRN (CAS Registry Number, if available)
+        4. GeneSymbol
+        5. GeneID (NCBI Gene identifier)
+        6. GeneForms ('|'-delimited list)
+        7. Organism (scientific name)
+        8. OrganismID (NCBI Taxonomy identifier)
+        9. Interaction
+        10. InteractionActions ('|'-delimited list)
+        12. PubMedIDs ('|'-delimited list)
+  brick/CTD_chem_gene_ixn_types.parquet:
+    title: "Chemical-gene interaction types"
+    page: https://ctdbase.org/reports/CTD_chem_gene_ixn_types.tsv
+    description: >-
+      Fields (non-OBO):
+        1. TypeName
+        2. Code
+        3. Description
+        4. ParentCode
+  brick/CTD_chemicals_diseases.parquet:
+    title: "Chemical-disease associations"
+    page: https://ctdbase.org/reports/CTD_chemicals_diseases.tsv.gz
+    description: >-
+      Fields:
+        1. ChemicalName
+        2. ChemicalID (MeSH identifier)
+        3. CasRN (CAS Registry Number, if available)
+        4. DiseaseName
+        5. DiseaseID (MeSH or OMIM identifier)
+        6. DirectEvidence ('|'-delimited list)
+        7. InferenceGeneSymbol
+        8. InferenceScore
+        9. OmimIDs ('|'-delimited list)
+        10. PubMedIDs ('|'-delimited list)
+  brick/CTD_chem_go_enriched.parquet:
+    title: "Chemical-GO enriched associations"
+    page: https://ctdbase.org/reports/CTD_chem_go_enriched.tsv.gz
+    description: >-
+      Fields:
+        1. ChemicalName
+        2. ChemicalID (MeSH identifier)
+        3. CasRN (CAS Registry Number, if available)
+        4. Ontology
+        5. GOTermName
+        6. GOTermID
+        7. HighestGOLevel
+        8. PValue
+        9. CorrectedPValue
+        10. TargetMatchQty
+        11. TargetTotalQty
+        12. BackgroundMatchQty
+        13. BackgroundTotalQty
+
+      CTD contains curated interactions between chemicals and genes/proteins. Many of these genes/proteins have Gene Ontology (GO) annotations that provide information about their associated biological processes, molecular functions, and cellular components. To provide insight into the biological properties that may be affected by a chemical, this report provides a list of GO terms that are statistically enriched among the genes/proteins that interact with the chemical or one of its descendants. GO terms are displayed in order of significance.
+
+      The significance of enrichment was calculated by the hypergeometric distribution and adjusted for multiple testing using the Bonferroni method.[1] The hypergeometric distribution is used to calculate the probability that the fraction of interacting genes annotated to the GO term or its descendants is significantly higher than the fraction of all human genes annotated to that GO term or its descendants in the genome.
+
+      For each enriched GO term with a Bonferroni p-value less than 0.01, the following information is displayed:
+
+      The ontology to which the GO term belongs (BP = Biological Process; CC = Cellular Component; MF = Molecular Function).
+      The highest level to which the GO term is assigned within the GO hierarchical ontology. Many GO terms are located at multiple levels within the ontology; only the highest level is displayed. Level 1 constitutes “children” of the most general Biological Process, Cellular Component, and Molecular Function terms.
+      The name of the enriched GO term associated with interacting genes. Each term is linked to additional information about the term.
+      The number of interacting genes with the associated GO term annotation or its descendants. Each number is linked to a list of the specific genes/proteins with this GO annotation.
+      The raw p-value.
+      The corrected p-value calculated using the Bonferroni multiple testing adjustment (see above).
+      The genome frequency: the fraction of genes in the genome annotated to the GO term or its descendants.
+  brick/CTD_chem_pathways_enriched.parquet:
+    title: "Chemical-pathway enriched associations"
+    page: https://ctdbase.org/reports/CTD_chem_pathways_enriched.tsv.gz
+    description: >-
+      Fields:
+        1. ChemicalName
+        2. ChemicalID (MeSH identifier)
+        3. CasRN (CAS Registry Number, if available)
+        4. PathwayName
+        5. PathwayID (KEGG or REACTOME identifier)
+        6. PValue
+        7. CorrectedPValue
+        8. TargetMatchQty
+        9. TargetTotalQty
+        10. BackgroundMatchQty
+        11. BackgroundTotalQty
+  brick/CTD_genes_diseases.parquet:
+    title: "Gene–disease associations"
+    page: https://ctdbase.org/reports/CTD_genes_diseases.tsv.gz
+    description: >-
+      Fields:
+        1. GeneSymbol
+        2. GeneID (NCBI Gene identifier)
+        3. DiseaseName
+        4. DiseaseID (MeSH or OMIM identifier)
+        5. DirectEvidence ('|'-delimited list)
+        6. InferenceChemicalName
+        7. InferenceScore
+        8. OmimIDs ('|'-delimited list)
+        9. PubMedIDs ('|'-delimited list)
+  brick/CTD_genes_pathways.parquet:
+    title: "Gene-pathway associations"
+    page: https://ctdbase.org/reports/CTD_genes_pathways.tsv.gz
+    description: >-
+      Fields:
+        1. GeneSymbol
+        2. GeneID (NCBI Gene identifier)
+        3. PathwayName
+        4. PathwayID (KEGG or REACTOME identifier)
+  brick/CTD_diseases_pathways.parquet:
+    title: "Disease-pathway associations"
+    page: https://ctdbase.org/reports/CTD_diseases_pathways.tsv.gz
+    description: >-
+      Fields:
+        1. DiseaseName
+        2. DiseaseID (MeSH or OMIM identifier)
+        3. PathwayName
+        4. PathwayID (KEGG or REACTOME identifier)
+        5. InferenceGeneSymbol (a gene via which the association is inferred)
+  brick/CTD_pheno_term_ixns.parquet:
+    title: "Chemical-phenotype interactions"
+    page: https://ctdbase.org/reports/CTD_pheno_term_ixns.tsv.gz
+    description: >-
+      Fields:
+        1. ChemicalName
+        2. ChemicalID (MeSH identifier)
+        3. CASRN (CAS Registry Number, if available)
+        4. PhenotypeName
+        5. PhenotypeID (GO identifier)
+        6. CoMentionedTerms ('|'-delimited list ) entries formatted as Name^Id^Source
+        7. Organism (scientific name)
+        8. OrganismID (NCBI Taxonomy identifier)
+        9. Interaction
+        10. InteractionActions ('|'-delimited list)
+        11. AnatomyTerms (MeSH term; '|'-delimited list) entries formatted as SequenceOrder^Name^Id
+        12. InferenceGeneSymbols ('|'-delimited list) entries formatted as Name^Id
+        13. PubMedIDs ('|'-delimited list)
+  brick/CTD_exposure_studies.parquet:
+    title: "Exposure–study associations"
+    page: https://ctdbase.org/reports/CTD_exposure_studies.tsv.gz
+    description: >-
+      Fields:
+        1. Reference
+        2. StudyFactors ( | delimited list)
+        3. ExposureStressors ( | delimited list ) entries formatted as Name^Id^Source
+        4. Receptors ( | delimited list) formatted as Name^Id^Source^description
+        5. StudyCountries (| delimited list)
+        6. Mediums (| delimited list)
+        7. ExposureMarkers ( | delimited list) entries formatted as Name^Id^Source
+        8. Diseases ( | delimited list) entries formatted as Name^Id^Source
+        9. Phenotypes ( | delimited list) entries formatted as Name^Id^Source
+        10. AuthorSummary
+  brick/CTD_exposure_events.parquet:
+    title: "Exposure-event associations"
+    page: https://ctdbase.org/reports/CTD_exposure_events.tsv.gz
+    description: >-
+      Fields:
+        1. ExposureStressorName
+        2. ExposureStressorID (MeSH identifier)
+        3. StressorSourceCategory ('|'-delimited list)
+        4. StressorSourceDetails
+        5. NumberOfStressorSamples
+        6. StressorNotes
+        7. NumberOfReceptors
+        8. Receptors
+        9. ReceptorNotes
+        10. SmokingStatus ('|'-delimited list)
+        11. Age
+        12. AgeUnitsOfMeasurement
+        13. AgeQualifier
+        14. Sex('|'-delimited list)
+        15. Race ('|'-delimited list)
+        16. Methods ('|'-delimited list)
+        17. DetectionLimit
+        18. DetectionLimitUnitsOfMeasurement
+        19. DetectionFrequency
+        20. Medium
+        21. ExposureMarker
+        22. ExposureMarkerID (MeSH or NCBI Gene identifier)
+        23. MarkerLevel
+        24. MarkerUnitsOfMeasurement
+        25. MarkerMeasurementStatistic
+        26. AssayNotes
+        27. StudyCountries ('|'-delimited list)
+        28. StateOrProvince ('|'-delimited list)
+        29. City,Town,Region,Area ('|'-delimited list)
+        30. ExposureEventNotes
+        31. OutcomeRelationship
+        32. DiseaseName
+        33. DiseaseID (MeSH or OMIM identifier)
+        34. PhenotypeName
+        35. PhenotypeID (GO identifier)
+        36. PhenotypeActionDegreeType
+        37. Anatomy (MeSH term; '|'-delimited list)
+        38. ExposureOutcomeNotes
+        39. Reference
+        40. AssociatedStudyTitles ('|'-delimited list)
+        41. EnrollmentStartYear
+        42. EnrollmentEndYear
+        43. StudyFactors ('|'-delimited list)
+  brick/CTD_Phenotype-Disease_biological_process_associations.parquet:
+    title: "Phenotype (GO)–Disease Inference Networks"
+    page: https://ctdbase.org/reports/CTD_Phenotype-Disease_biological_process_associations.tsv.gz
+    description: >-
+      Fields:
+        1. GOName
+        2. GOID (GO identifer)
+        3. DiseaseName
+        4. DiseaseID (MeSH or OMIM identifier)
+        5. InferenceChemicalQty
+        6. InferenceChemicalNames ('|' delimited list)
+        7. InferenceGeneQty
+        8. InferenceGeneSymbols ('|' delimited list)
+  brick/CTD_Phenotype-Disease_cellular_component_associations.parquet:
+    title: "Phenotype (GO)–Disease Inference Networks"
+    page: https://ctdbase.org/reports/CTD_Phenotype-Disease_cellular_component_associations.tsv.gz
+    description: >-
+      Fields:
+        1. GOName
+        2. GOID (GO identifer)
+        3. DiseaseName
+        4. DiseaseID (MeSH or OMIM identifier)
+        5. InferenceChemicalQty
+        6. InferenceChemicalNames ('|' delimited list)
+        7. InferenceGeneQty
+        8. InferenceGeneSymbols ('|' delimited list)
+  brick/CTD_Phenotype-Disease_molecular_function_associations.parquet:
+    title: "Phenotype (GO)–Disease Inference Networks"
+    page: https://ctdbase.org/reports/CTD_Phenotype-Disease_molecular_function_associations.tsv.gz
+    description: >-
+      Fields:
+        1. GOName
+        2. GOID (GO identifer)
+        3. DiseaseName
+        4. DiseaseID (MeSH or OMIM identifier)
+        5. InferenceChemicalQty
+        6. InferenceChemicalNames ('|' delimited list)
+        7. InferenceGeneQty
+        8. InferenceGeneSymbols ('|' delimited list)
+  brick/CTD_chemicals.parquet:
+    title: "Chemical vocabulary"
+    page: https://ctdbase.org/reports/CTD_chemicals.tsv.gz
+    description: >-
+      Fields:
+        1. ChemicalName
+        2. ChemicalID (MeSH identifier)
+        3. CasRN (CAS Registry Number, if available)
+        4. Definition
+        5. ParentIDs (identifiers of the parent terms; '|'-delimited list)
+        6. TreeNumbers (identifiers of the chemical's nodes; '|'-delimited list)
+        7. ParentTreeNumbers (identifiers of the parent nodes; '|'-delimited list)
+        8. Synonyms ('|'-delimited list)
+
+      CTD's chemical vocabulary is a modified subset of descriptors from the “Chemicals and Drugs” category and Supplementary Concept Records from the U.S. National Library of Medicine (NLM) Medical Subject Headings (MeSH®), a hierarchical vocabulary used to index articles for MEDLINE®/PubMed®.[1] In contrast to MeSH at NLM, CTD merged the descriptors and supplementary concepts into a single hierarchy.
+
+      The chemical vocabulary is structured as a polyhierarchic tree in which a term may appear as a node in more than one branch. A term may have different descendant terms in each branch in which it appears (although CTD combines all descendants from all branches to reflect how our data is curated, searched, and displayed).
+
+      Several branches of the original MeSH vocabulary were excluded from CTD's chemical vocabulary because they are not molecular reagents, environmental chemicals or clinical drugs (e.g., “Nucleic Acids, Nucleotides, and Nucleosides” and “Purines”). Other branches were excluded because they are simply broad chemical classes that do not contain more specific terms (e.g., “Solutions” and “Poisons”).
+  brick/CTD_diseases.parquet:
+    title: "Disease vocabulary (MEDIC)"
+    page: https://ctdbase.org/reports/CTD_diseases.tsv.gz
+    description: >-
+      Fields (non-OBO):
+        1. DiseaseName
+        2. DiseaseID (MeSH or OMIM identifier)
+        3. Definition
+        4. AltDiseaseIDs (alternative identifiers; '|'-delimited list)
+        5. ParentIDs (identifiers of the parent terms; '|'-delimited list)
+        6. TreeNumbers (identifiers of the disease's nodes; '|'-delimited list)
+        7. ParentTreeNumbers (identifiers of the parent nodes; '|'-delimited list)
+        8. Synonyms ('|'-delimited list)
+        9. SlimMappings (MEDIC-Slim mappings; '|'-delimited list)
+
+      CTD's MEDIC disease vocabulary is a modified subset of descriptors from the “Diseases” [C] branch of the U.S. National Library of Medicine's Medical Subject Headings (MeSH®), combined with genetic disorders from the Online Mendelian Inheritance in Man® (OMIM®) database. MeSH is a hierarchical vocabulary used to index articles for MEDLINE®/PubMed®.[1] OMIM contains textual information, references related to diseases, links to MEDLINE and sequence records in the Entrez system, and links to additional related resources at NCBI. It is developed at the Johns Hopkins University.
+
+      MEDIC is structured as a polyhierarchic tree in which a term may appear as a node in more than one branch. A disease may have different descendants in each branch in which it appears (although CTD combines all descendants from all branches to reflect how our data is curated, searched, and displayed).
+
+      OMIM® and Online Mendelian Inheritance in Man® are registered trademarks of the Johns Hopkins University.
+  brick/CTD_anatomy.parquet:
+    title: "Anatomy vocabulary"
+    page: https://ctdbase.org/reports/CTD_anatomy.tsv.gz
+    description: >-
+      Fields:
+        1. AnatomyName
+        2. AnatomyID (MeSH identifier)
+        3. Definition
+        4. AltAnatomyIDs (alternative identifiers; '|'-delimited list)
+        5. ParentIDs (identifiers of the parent terms; '|'-delimited list)
+        6. TreeNumbers (identifiers of the anatomical term's nodes; '|'-delimited list)
+        7. ParentTreeNumbers (identifiers of the parent nodes; '|'-delimited list)
+        8. Synonyms ('|'-delimited list)
+        9. ExternalSynonyms ('|'-delimited list)
+      CTD's anatomy vocabulary is a modified subset of descriptors from the “Anatomy” [A] branch of the U.S. National Library of Medicine's Medical Subject Headings (MeSH®), manually integrated by CTD curators with the Uberon Multi-Species Anatomy Ontology (UBERON®), and the Cell Ontology (CL®). UBERON and CL terms are cross-referenced to the MeSH terms as synonyms to the terms, and via direct, accession-based cross-reference hyperlinks. Each anatomical term occurs in one or more nodes of this hierarchical vocabulary.
+  brick/CTD_genes.parquet:
+    title: "Gene vocabulary"
+    page: https://ctdbase.org/reports/CTD_genes.tsv.gz
+    description: >-
+      Fields:
+        1. GeneSymbol
+        2. GeneName
+        3. GeneID (NCBI Gene identifier)
+        4. AltGeneIDs (alternative NCBI Gene identifiers; '|'-delimited list)
+        5. Synonyms ('|'-delimited list)
+        6. BioGRIDIDs ('|'-delimited list)
+        7. PharmGKBIDs ('|'-delimited list)
+        8. UniprotIDs ('|'-delimited list)
+  brick/CTD_pathways.parquet:
+    title: "Pathway vocabulary"
+    page: https://ctdbase.org/reports/CTD_pathways.tsv.gz
+    description: >-
+      Fields:
+        1. PathwayName
+        2. PathwayID (KEGG or REACTOME identifi2r)

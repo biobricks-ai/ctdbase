@@ -1,6 +1,7 @@
 /download
 /checksum
 .*
+!.bb
 !.envrc
 !.github
 !.gitignore
