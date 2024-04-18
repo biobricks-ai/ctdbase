@@ -6,7 +6,7 @@
 localpath=$(pwd)
 echo "Local path: $localpath"
 
-# Define the checksum URL for the TargetScan root page
+# Define the checksum URL for the CTDbase root page
 checksum_url="http://ctdbase.org/downloads/"
 
 # Create the checksum directory
