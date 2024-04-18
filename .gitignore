@@ -1,7 +1,7 @@
 /download
-/data
-
+/checksum
 .*
+!.bb
 !.envrc
 !.github
 !.gitignore
