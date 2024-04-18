@@ -5,7 +5,7 @@ stages:
     deps:
     - path: http://ctdbase.org/downloads/
       hash: md5
-      checksum: '82628762405679720307201941663765326895'
+      checksum: '178184868144826747636982669078584985443'
     - path: stages/01_download.R
       hash: md5
       md5: e86e4eab106786eab280665950e75676
@@ -31,19 +31,19 @@ stages:
     outs:
     - path: brick/
       hash: md5
-      md5: 3a7d51c0529f18fb61ffb94662dd05a8.dir
-      size: 2016855780
+      md5: 3cef3c471970953279377c936cd69b1a.dir
+      size: 3460702644
       nfiles: 19
   invalidate:
     cmd: sh stages/00_invalidate.sh
     deps:
     - path: stages/00_invalidate.sh
       hash: md5
-      md5: 37f67eeb982320e3f0a81c147616ab7b
-      size: 437
+      md5: f1d205ca68da053db61f3f9fc0923132
+      size: 434
     outs:
     - path: checksum/
       hash: md5
-      md5: 074bd65a59eb06476c472a6f8bdca4f1.dir
+      md5: fd6ed7f330774fe07c273658102bfe9e.dir
       size: 54609
       nfiles: 1
